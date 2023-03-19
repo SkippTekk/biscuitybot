@@ -1,0 +1,20 @@
+{
+  "name": "biscuitybot",
+  "version": "1.0.0",
+  "description": "Bot for twitch to help prevent bots.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.mjs --ignore ./data/"
+  },
+  "keywords": [],
+  "author": "SkippTekk 267920707248193537",
+  "license": "ISC",
+  "dependencies": {
+    "@twurple/api": "6.0.9",
+    "@twurple/auth": "6.0.9",
+    "@twurple/chat": "6.0.9",
+    "dotenv": "^16.0.3",
+    "mariadb": "^3.0.2",
+    "nodemon": "^2.0.20"
+  }
+}
