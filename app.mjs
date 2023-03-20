@@ -39,7 +39,7 @@ chatClient.onMessage((channel, user, text) => {
 });
     
 
-
+console.log(guests)
 //Join function and shit 
 chatClient.onMessage((channel, user, text, msg) => {
     if(text === '!join'){
@@ -54,7 +54,16 @@ chatClient.onMessage((channel, user, text, msg) => {
         }
     } else if (text === '!leave'){
         if (msg.userInfo.isBroadcaster){
-            chatClient.say(channel,`This command doesn't fully work, but manual removal will be needed. Please speak to my Owner SkippTekk`);
+            chatClient.say(channel,`Okie dokie, I shall leave now, thanks for having me!`);
+            for(var i=0; i< guests.length; i++){
+                if (guests[i] === user){
+                    guests.splice(i,1)
+                }
+            }
+            chatClient.part(user);
+            console.log(guests);
+            fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',);
+
         }
     }
 });
