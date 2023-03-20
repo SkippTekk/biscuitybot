@@ -55,8 +55,6 @@ chatClient.onMessage((channel, user, text, msg) => {
     } else if (text === '!leave'){
         if (msg.userInfo.isBroadcaster){
             chatClient.say(channel,`This command doesn't fully work, but manual removal will be needed. Please speak to my Owner SkippTekk`);
-        } else {
-            return;
         }
     }
 });
