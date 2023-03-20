@@ -43,11 +43,15 @@ chatClient.onMessage((channel, user, text) => {
 //Join function and shit 
 chatClient.onMessage((channel, user, text, msg) => {
     if(text === '!join'){
-        chatClient.say(channel, `Attempting to join channel for ${user}, if you want me to leave. use the !leave command`);
-        chatClient.join(user);
-        guests.push(user);
-        console.log(guests);
-        fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',)
+        if(guests.includes(user)){
+            chatClient.say(channel,`I'm already in your channel ${user}`)
+        }else {
+            chatClient.say(channel, `Attempting to join channel for ${user}, if you want me to leave. use the !leave command`);
+            chatClient.join(user);
+            guests.push(user);
+            console.log(guests);
+            fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',)
+        }
     } else if (text === '!leave'){
         if (msg.userInfo.isBroadcaster){
             chatClient.say(channel,`This command doesn't fully work, but manual removal will be needed. Please speak to my Owner SkippTekk`);
