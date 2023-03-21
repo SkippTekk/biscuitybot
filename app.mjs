@@ -23,6 +23,7 @@ await authProvider.addUserForToken(tokenData, ['chat']);
 const chatClient = new ChatClient({ authProvider, channels: guests });
 await chatClient.connect(
     console.log(`bot has been loaded in the following channels: ${guests}`)
+
 );
 
 chatClient.onMessage((channel, user, text) => {
@@ -39,7 +40,6 @@ chatClient.onMessage((channel, user, text) => {
 });
     
 
-console.log(guests)
 //Join function and shit 
 chatClient.onMessage((channel, user, text, msg) => {
     if(text === '!join'){
@@ -49,8 +49,7 @@ chatClient.onMessage((channel, user, text, msg) => {
             chatClient.say(channel, `Attempting to join channel for ${user}, if you want me to leave. use the !leave command`);
             chatClient.join(user);
             guests.push(user);
-            console.log(guests);
-            fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',)
+            fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',);
         }
     } else if (text === '!leave'){
         if (msg.userInfo.isBroadcaster){
@@ -61,15 +60,22 @@ chatClient.onMessage((channel, user, text, msg) => {
                 }
             }
             chatClient.part(user);
-            console.log(guests);
             fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',);
 
         }
     }
 });
-chatClient.onMessage((channel, user, text) => {    
+
+
+chatClient.onMessage((channel, user, text) => {
+    let result = 0
     for (const s of Object.keys(banned)){
         if(text.toLocaleLowerCase().indexOf(s) !== -1)
-        return chatClient.say(channel, `${user} said a bad word`)
-    } 
+        if(text != s){
+            let result = 1;
+        }
+    }
+    if (result = 1)
+    chatClient.say(channel, `${user} said a bad word`);
+    console.log(`${channel} - ${user}: ${text}`);
 })

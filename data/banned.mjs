@@ -1,6 +1,6 @@
 //const banned = ['doge','test'];
 const banned = {
-    'doge com': "is doge",
-    'test': 'test'
+    "doge com": "",
+    "test": ""
 }
 export default banned;
