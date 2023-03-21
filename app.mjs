@@ -68,14 +68,17 @@ chatClient.onMessage((channel, user, text, msg) => {
 
 
 chatClient.onMessage((channel, user, text) => {
-    let result = 0
+    var result = 0
     for (const s of Object.keys(banned)){
         if(text.toLocaleLowerCase().indexOf(s) !== -1)
-        if(text != s){
-            let result = 1;
+        if(text !== s){
+            var result = 1;
         }
     }
-    if (result = 1)
-    chatClient.say(channel, `${user} said a bad word`);
-    console.log(`${channel} - ${user}: ${text}`);
+    if (result == 1){
+        chatClient.say(channel, `${user} said a bad word`);
+    } else {
+        console.log(`${channel} - ${user}: ${text}`);
+        
+    }
 })
