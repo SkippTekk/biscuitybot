@@ -33,7 +33,7 @@ chatClient.onMessage((channel, user, text) => {
 });
     
 chatClient.onMessage((channel, user, text) => {
-    if (text === '!botinfo') {
+    if (text === '!biscuitybot info') {
         chatClient.say(channel, `Hiyea, i'm a creation from SkippTekk, feel free to reach him on my twitch page!`)
         console.log(`bot info was ran in ${channel}`)
     };
@@ -42,7 +42,7 @@ chatClient.onMessage((channel, user, text) => {
 
 //Join function and shit 
 chatClient.onMessage((channel, user, text, msg) => {
-    if(text === '!join'){
+    if(text === '!biscuitybot join'){
         if(guests.includes(user)){
             chatClient.say(channel,`I'm already in your channel ${user}`)
         }else {
@@ -51,7 +51,7 @@ chatClient.onMessage((channel, user, text, msg) => {
             guests.push(user);
             fs.writeFile('./data/streamers.json',JSON.stringify(guests), 'utf8',);
         }
-    } else if (text === '!leave'){
+    } else if (text === '!biscuitybot leave'){
         if (msg.userInfo.isBroadcaster){
             chatClient.say(channel,`Okie dokie, I shall leave now, thanks for having me!`);
             for(var i=0; i< guests.length; i++){
@@ -77,8 +77,6 @@ chatClient.onMessage((channel, user, text) => {
     }
     if (result == 1){
         chatClient.say(channel, `${user} said a bad word`);
-    } else {
         console.log(`${channel} - ${user}: ${text}`);
-        
     }
 })
